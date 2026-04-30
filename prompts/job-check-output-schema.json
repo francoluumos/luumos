@@ -1,0 +1,133 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://luumos.io/schemas/job-check-output.v0.1.json",
+  "title": "Luumos Job-Check Output",
+  "description": "Strukturierter Output der Job-Check-Analyse. Wird vom LLM gemäss prompts/job-check-system.md erzeugt und vor dem Speichern in Supabase validiert.",
+  "version": "0.1.0",
+  "type": "object",
+  "required": [
+    "validation_error",
+    "leverage_score",
+    "leverage_score_label",
+    "stays_human",
+    "improve_today",
+    "learn_next_year",
+    "disclaimer"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "validation_error": {
+      "type": "boolean",
+      "description": "true wenn Input unvollständig oder unsinnig — alle Sektionen leer, score null"
+    },
+    "validation_message": {
+      "type": ["string", "null"],
+      "maxLength": 400,
+      "description": "Hinweis-Text an User, hochdeutsch, höflich. Null wenn validation_error=false"
+    },
+    "leverage_score": {
+      "type": ["integer", "null"],
+      "minimum": 0,
+      "maximum": 100,
+      "description": "0-100, null wenn validation_error=true"
+    },
+    "leverage_score_label": {
+      "type": ["string", "null"],
+      "enum": [null, "Hoher Hebel", "Solider Hebel", "Mittlerer Hebel", "Erste Schritte"]
+    },
+    "stays_human": {
+      "type": "array",
+      "minItems": 0,
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "required": ["title", "explanation"],
+        "additionalProperties": false,
+        "properties": {
+          "title": {
+            "type": "string",
+            "minLength": 5,
+            "maxLength": 80,
+            "description": "Kurzer Titel des menschlichen Aspekts"
+          },
+          "explanation": {
+            "type": "string",
+            "minLength": 30,
+            "maxLength": 280,
+            "description": "Begründung, warum dieser Aspekt menschlich bleibt"
+          }
+        }
+      }
+    },
+    "improve_today": {
+      "type": "array",
+      "minItems": 0,
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "required": ["task", "ai_approach", "tool_suggestion"],
+        "additionalProperties": false,
+        "properties": {
+          "task": {
+            "type": "string",
+            "minLength": 5,
+            "maxLength": 100,
+            "description": "Die konkrete Aufgabe aus dem User-Input"
+          },
+          "ai_approach": {
+            "type": "string",
+            "minLength": 30,
+            "maxLength": 280,
+            "description": "Wie KI diese Aufgabe verbessern kann"
+          },
+          "tool_suggestion": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 100,
+            "description": "Konkrete Tool-Empfehlung, möglichst mit Schweiz/EU-Bezug"
+          },
+          "estimated_time_saved_pct": {
+            "type": ["integer", "null"],
+            "minimum": 0,
+            "maximum": 95,
+            "description": "Geschätzte Zeitersparnis in Prozent (Bandbreite, kein präziser Wert). Null wenn nicht sinnvoll schätzbar."
+          }
+        }
+      }
+    },
+    "learn_next_year": {
+      "type": "array",
+      "minItems": 0,
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "required": ["skill", "why", "starting_point"],
+        "additionalProperties": false,
+        "properties": {
+          "skill": {
+            "type": "string",
+            "minLength": 5,
+            "maxLength": 80,
+            "description": "Der Skill oder das Thema"
+          },
+          "why": {
+            "type": "string",
+            "minLength": 30,
+            "maxLength": 280,
+            "description": "Warum dieser Skill für genau diese Rolle relevant ist"
+          },
+          "starting_point": {
+            "type": "string",
+            "minLength": 10,
+            "maxLength": 200,
+            "description": "Konkreter Einstiegspunkt: Kurs, Tool, Buch, Lernpfad"
+          }
+        }
+      }
+    },
+    "disclaimer": {
+      "type": "string",
+      "const": "Diese Einschätzung beruht auf Ihren Angaben und allgemeinem Branchenwissen. Sie ist keine Prognose und kein Ersatz für berufliche Beratung."
+    }
+  }
+}

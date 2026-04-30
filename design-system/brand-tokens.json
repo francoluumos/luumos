@@ -1,0 +1,103 @@
+{
+  "$schema": "https://design-tokens.github.io/community-group/format/",
+  "_meta": {
+    "version": "0.1.0",
+    "lastUpdated": "2026-04-30",
+    "comment": "Single source of truth for Luumos brand tokens. Update tokens.css when this changes."
+  },
+  "brand": {
+    "name": "Luumos",
+    "domain": "luumos.io",
+    "tagline_de": "Mit HI die KI führen.",
+    "tagline_en": "Be illuminated by Human Intelligence."
+  },
+  "color": {
+    "_comment": "Farbpalette noch nicht final. Platzhalter unten ersetzen, sobald Logo/Brand-Identity-Workshop abgeschlossen ist.",
+    "primary": {
+      "50":  { "$value": "#TBD" },
+      "500": { "$value": "#TBD" },
+      "900": { "$value": "#TBD" }
+    },
+    "neutral": {
+      "0":   { "$value": "#FFFFFF" },
+      "50":  { "$value": "#F8F8F7" },
+      "100": { "$value": "#EFEFEE" },
+      "300": { "$value": "#C9C9C7" },
+      "500": { "$value": "#7A7A78" },
+      "700": { "$value": "#3D3D3B" },
+      "900": { "$value": "#1A1A19" }
+    },
+    "semantic": {
+      "success": { "$value": "#TBD" },
+      "warning": { "$value": "#TBD" },
+      "error":   { "$value": "#TBD" },
+      "info":    { "$value": "#TBD" }
+    }
+  },
+  "font": {
+    "family": {
+      "header": {
+        "$value": "Assistant, system-ui, sans-serif",
+        "_usage": "Überschriften, UI-Buttons, Navigation"
+      },
+      "accent": {
+        "$value": "Inconsolata, Menlo, Monaco, monospace",
+        "_usage": "Wordmark/Logo, Zahlen-Outputs, Code-ähnliche UI-Elemente, Callouts"
+      },
+      "body": {
+        "$value": "Inter, system-ui, sans-serif",
+        "_usage": "Fliesstext, Beschreibungen, Newsletter-HTML",
+        "_note": "Empfehlung. Falls Franco final auf Inconsolata-als-Body besteht, hier ersetzen — bewusster Lese-Tradeoff."
+      }
+    },
+    "weight": {
+      "regular":  { "$value": 400 },
+      "medium":   { "$value": 500 },
+      "semibold": { "$value": 600 },
+      "bold":     { "$value": 700 }
+    },
+    "size": {
+      "xs":   { "$value": "12px" },
+      "sm":   { "$value": "14px" },
+      "base": { "$value": "16px" },
+      "lg":   { "$value": "18px" },
+      "xl":   { "$value": "20px" },
+      "2xl":  { "$value": "24px" },
+      "3xl":  { "$value": "30px" },
+      "4xl":  { "$value": "36px" },
+      "5xl":  { "$value": "48px" },
+      "6xl":  { "$value": "60px" }
+    },
+    "lineHeight": {
+      "tight":   { "$value": 1.15 },
+      "normal":  { "$value": 1.5 },
+      "relaxed": { "$value": 1.75 }
+    }
+  },
+  "spacing": {
+    "_comment": "8-Punkt-Grid-System",
+    "0":  { "$value": "0px" },
+    "1":  { "$value": "4px" },
+    "2":  { "$value": "8px" },
+    "3":  { "$value": "12px" },
+    "4":  { "$value": "16px" },
+    "6":  { "$value": "24px" },
+    "8":  { "$value": "32px" },
+    "12": { "$value": "48px" },
+    "16": { "$value": "64px" },
+    "24": { "$value": "96px" }
+  },
+  "borderRadius": {
+    "none": { "$value": "0px" },
+    "sm":   { "$value": "4px" },
+    "md":   { "$value": "8px" },
+    "lg":   { "$value": "16px" },
+    "xl":   { "$value": "24px" },
+    "full": { "$value": "9999px" }
+  },
+  "shadow": {
+    "sm": { "$value": "0 1px 2px 0 rgba(0, 0, 0, 0.05)" },
+    "md": { "$value": "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)" },
+    "lg": { "$value": "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)" }
+  }
+}

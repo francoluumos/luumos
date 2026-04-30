@@ -1,0 +1,117 @@
+/* Luumos Brand Tokens — CSS Custom Properties
+ * Source of truth: brand-tokens.json
+ * When this file diverges from brand-tokens.json, brand-tokens.json wins.
+ * Update both together.
+ */
+
+:root {
+  /* ===== Fonts ===== */
+  --font-header: "Assistant", system-ui, sans-serif;
+  --font-accent: "Inconsolata", "Menlo", "Monaco", monospace;
+  --font-body: "Inter", system-ui, sans-serif;
+
+  /* Google Fonts import (or self-host once chosen):
+   * @import url('https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700&family=Inconsolata:wght@400;700&family=Inter:wght@400;500;600&display=swap');
+   */
+
+  /* ===== Font weights ===== */
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+
+  /* ===== Font sizes ===== */
+  --fs-xs: 12px;
+  --fs-sm: 14px;
+  --fs-base: 16px;
+  --fs-lg: 18px;
+  --fs-xl: 20px;
+  --fs-2xl: 24px;
+  --fs-3xl: 30px;
+  --fs-4xl: 36px;
+  --fs-5xl: 48px;
+  --fs-6xl: 60px;
+
+  /* ===== Line heights ===== */
+  --lh-tight: 1.15;
+  --lh-normal: 1.5;
+  --lh-relaxed: 1.75;
+
+  /* ===== Colors — neutral ===== */
+  --c-neutral-0: #ffffff;
+  --c-neutral-50: #f8f8f7;
+  --c-neutral-100: #efefee;
+  --c-neutral-300: #c9c9c7;
+  --c-neutral-500: #7a7a78;
+  --c-neutral-700: #3d3d3b;
+  --c-neutral-900: #1a1a19;
+
+  /* ===== Colors — primary (TBD) ===== */
+  --c-primary-50: #fef3c7; /* placeholder */
+  --c-primary-500: #f59e0b; /* placeholder */
+  --c-primary-900: #78350f; /* placeholder */
+
+  /* ===== Colors — semantic (TBD) ===== */
+  --c-success: #10b981; /* placeholder */
+  --c-warning: #f59e0b; /* placeholder */
+  --c-error: #ef4444; /* placeholder */
+  --c-info: #3b82f6; /* placeholder */
+
+  /* ===== Spacing — 8-point grid ===== */
+  --sp-0: 0;
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-6: 24px;
+  --sp-8: 32px;
+  --sp-12: 48px;
+  --sp-16: 64px;
+  --sp-24: 96px;
+
+  /* ===== Border radius ===== */
+  --br-none: 0;
+  --br-sm: 4px;
+  --br-md: 8px;
+  --br-lg: 16px;
+  --br-xl: 24px;
+  --br-full: 9999px;
+
+  /* ===== Shadows ===== */
+  --sh-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --sh-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --sh-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* ===== Base typography ===== */
+body {
+  font-family: var(--font-body);
+  font-size: var(--fs-base);
+  line-height: var(--lh-normal);
+  color: var(--c-neutral-900);
+  background: var(--c-neutral-0);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-header);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-tight);
+  color: var(--c-neutral-900);
+}
+
+h1 { font-size: var(--fs-5xl); }
+h2 { font-size: var(--fs-4xl); }
+h3 { font-size: var(--fs-3xl); }
+h4 { font-size: var(--fs-2xl); }
+
+/* Wordmark / brand accent — use Inconsolata */
+.wordmark, .accent-text {
+  font-family: var(--font-accent);
+  letter-spacing: -0.02em;
+}
+
+/* Numerical outputs (e.g., Job-Check scores) */
+.numeric {
+  font-family: var(--font-accent);
+  font-variant-numeric: tabular-nums;
+}

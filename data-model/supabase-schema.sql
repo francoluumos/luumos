@@ -148,11 +148,14 @@ create index idx_newsletter_events_event_type on newsletter_events (event_type);
 alter table users enable row level security;
 alter table job_check_submissions enable row level security;
 alter table newsletter_events enable row level security;
+alter table roles enable row level security;
+alter table companies enable row level security;
 
 -- TODO: define policies before going live
 -- - users: anon can INSERT (signup), can SELECT only own row via session
 -- - job_check_submissions: anon can INSERT, can SELECT own + public-shared rows by share_token
 -- - newsletter_events: anon can INSERT specific event types only (opt_in_started)
+-- - roles + companies: anon SELECT for autocomplete (read-only, public lookup data)
 -- - admin role can SELECT everything for analytics/dashboards
 
 -- ============================================
@@ -170,6 +173,10 @@ where jcs.created_at >= now() - interval '8 weeks'
 group by r.canonical_name, date_trunc('week', jcs.created_at)
 order by week_start desc, submission_count desc;
 
+-- View runs under the caller's permissions, NOT the creator's. This means
+-- RLS on the underlying tables (job_check_submissions) is honored.
+alter view v_weekly_top_roles set (security_invoker = true);
+
 -- ============================================
 -- TRIGGERS
 -- ============================================
@@ -180,6 +187,9 @@ begin
   return new;
 end;
 $$ language plpgsql;
+
+-- Lock search_path to prevent function-hijacking via temp schema
+alter function public.set_updated_at() set search_path = public, pg_catalog;
 
 create trigger trg_users_updated_at before update on users
   for each row execute function set_updated_at();

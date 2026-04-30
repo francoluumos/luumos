@@ -154,3 +154,28 @@ Format: ADR number, decision title, date, decision/rationale/reversal-trigger.
 **Bonus:** Provides high-value cohort data for future newsletter segmentation, school-launch positioning, and content targeting (e.g., "AI-Trick der Woche" videos can be segmented for beginners vs. power-users).
 
 **Reversal trigger:** If completion rate drops below 40%, drop `current_ai_usage` back to optional or move to a post-result follow-up question.
+
+---
+
+## ADR-012: Code language English, content language German
+
+**Date:** 2026-04-30
+
+**Decision:** Two distinct language domains in the Luumos codebase:
+
+- **English:** all code (variables, functions, file names, class names), code comments, technical READMEs, build prompts to Lovable, API contracts, type definitions, commit messages.
+- **German:** the LLM system prompt for the Job-Check (`prompts/job-check-system.md`), the user-facing strings the LLM produces, all marketing copy, voice & tone guide, content strategy, ADR business-rationale, Konzept doc, anything an external user or a Swiss reader will see.
+
+**Rationale:**
+
+- For the Job-Check LLM prompt: the output must be hochdeutsch with Swiss specifics. The forbidden-words list contains exact German strings. Translating context to English creates risk of cultural mistranslation. Modern Anthropic models (Sonnet 4.6) handle German system prompts as well as English for this use case.
+- For Lovable build prompts and code: Lovable produces React/TypeScript/Tailwind, and the entire framework, library, and tooling ecosystem is English. English prompts produce idiomatic, maintainable code. German build prompts produce mixed-language variable names ("inputFeldFürBeruf") that are painful to refactor.
+
+**How to apply:**
+
+- When prompting Lovable: write the structural instruction in English, but pass user-facing strings in German verbatim.
+- When writing code or comments in `lovable-app/` or Edge Functions: English.
+- When writing or editing strategy/concept/voice docs in `docs/` or `design-system/voice-and-tone.md`: German.
+- When writing the Job-Check system or user prompts: German.
+
+**Reversal trigger:** None foreseen.
